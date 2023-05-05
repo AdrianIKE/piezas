@@ -11,10 +11,10 @@ export default function initModels(sequelize) {
   const piezas = _piezas.init(sequelize, DataTypes);
   const proveedores = _proveedores.init(sequelize, DataTypes);
 
-  piezas.belongsTo(categorias, { as: "categorium", foreignKey: "categoria_id"});
+  piezas.belongsTo(categorias, { as: "categoria", foreignKey: "categoria_id"});
   categorias.hasMany(piezas, { as: "piezas", foreignKey: "categoria_id"});
   pieza_proveedor.belongsTo(piezas, { as: "pieza", foreignKey: "pieza_id"});
-  piezas.hasMany(pieza_proveedor, { as: "pieza_proveedors", foreignKey: "pieza_id"});
+  piezas.hasMany(pieza_proveedor, { as: "entregas", foreignKey: "pieza_id"});
   pieza_proveedor.belongsTo(proveedores, { as: "proveedor", foreignKey: "proveedor_id"});
   proveedores.hasMany(pieza_proveedor, { as: "pieza_proveedors", foreignKey: "proveedor_id"});
 
